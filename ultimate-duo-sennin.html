@@ -15,21 +15,13 @@
                     <rt>アルティメット</rt>
                     <rp>）</rp>
                 </ruby>
-                ○× ゲーム：二人で遊ぶ
+                ○× ゲーム：二人で遊ぶ　～仙人モード～
             </a>
         </h1>
     </header>
 
-    <div id="blank" style="display: block;">
-        <p>　</p>
-    </div>
-    <div id="alert" style="display: none;" class="alert">
-        <p>1回目に置いた場所の周囲は置けません！</p>
-    </div>
-
-    <div id="popup-wrapper">
+    <div id="popup-wrapper" style="display: block;">
         <div id="popup-inside">
-            <div id="close">x</div>
             <div>
                 <h2>
                     <ruby>
@@ -38,18 +30,24 @@
                         <rt>アルティメット</rt>
                         <rp>）</rp>
                     </ruby>
-                    ○× ゲーム　ルール説明
+                    ○× ゲーム　～仙人モード～　ルール説明
                 </h2>
-                <p>・1ターンに2つ自分のマークを置くことができる。<br>（※ただし先行1ターン目は1つまで）</p>
-                <p>・1ターン中、隣り合うマスにマークを置くことはできない。</p>
-                <p>・自分のマークを縦、横、斜めに4つ並べたものを2セット作ることで勝利となる。<br>（※ただし、2セットのうち2つ以上マークを重複してはならない）</p>
-                <p>・マスが埋まっても決着がつかない場合引き分けとなる。</p>
+                <p>・基本ルールは究極○xゲームと同じである。</p>
+                <p>・1ターン中、隣り合うマスにマークを置くと敗北となる。</p>
+                <p>・制限時間内に自分のターンを終えることができなかった場合、敗北となる。</p>
+                <p>・以下の3モードから難易度を選択してゲーム開始。</p>
             </div>
+            <button id="start-elite" onclick="start(60)">エリート級<br>開始<br>（制限時間60秒）</button>
+            　　
+            <button id="start-super" onclick="start(30)">超人級<br>開始<br>（制限時間30秒）</button>
+            　　
+            <button id="start-sennin" onclick="start(10)">仙人級<br>開始<br>（制限時間10秒）</button>
         </div>
     </div>
 
     <dialog id="dialog" class="dialog">
-        <h1 id="message">　</h1>
+        <h1 id="cause"></h1>
+        <h1 id="message"></h1>
         <div>
             <button id="again">もう一度遊ぶ</button>
             <button id="back">ホームに戻る</button>
@@ -90,17 +88,13 @@
             </tr>
         </table>
 
-        <div class="btn">
-            <button id="rule" class="rule">ルール確認</button>
-            <br><br><br>
-            <button id="redo" class="redo">1つ戻す</button>
-        </div>
+        <div id="display">　</div>
         
     </div>
 
     <footer class="last">
         <p>&copy; kota kanmachi, kazuma saiki</p>
     </footer>
-    <script src="ultimate.js"></script>
+    <script src="ultimate-sennin.js"></script>
 </body>
 </html>

@@ -5,46 +5,76 @@ var nId;
 var hist = [];
 var mReach = [];
 var bReach = [];
+var limite;
+let seconds;
+let running = false;
+let display = document.getElementById("display");
+
+function displayTime() {
+    display.textContent = "残り " + seconds + " 秒";
+}
+
+function countDown() {
+    setTimeout(() => {
+        if (!running) {
+            return;
+        } else if (seconds > 0) {
+            seconds--;
+            displayTime();
+        } else if (seconds === 0) {
+            running = false;
+            display.textContent = "タイムアップです。";
+            winner("タイムアップ");
+        }
+        countDown();
+    }, 1000);
+}
+
+function resetTimer() {
+    seconds = limite;
+    running = true;
+    flag = true;
+    displayTime();
+}
 
 function PushSquare(e) {
     nId = Number(e.id);
     if (e.textContent != "") return;
-    else if (judgeAround(pId, nId)) return;
-
+    else if (judgeAround(pId, nId)) {
+        running = false;
+        winner("マス被り");
+        return;
+    }
     var turn = document.getElementById("turn");
     var count = document.getElementById("count");
 
     if (markCount === 0 || Math.floor((markCount-1)/2)%2 === 1) {
         e.textContent = "○";
         if (markCount%2 === 0) {
-            if (markCount !== 0 && document.getElementById(String(pId)).style.backgroundColor === "rgb(255, 254, 170)") document.getElementById(String(pId)).style.backgroundColor = 'White';
-            document.getElementById('alert').style.display = 'none';
-            document.getElementById('blank').style.display = 'block';
             turn.textContent = "x のターン";
             count.textContent = "あと2回";
             pId = 100;
+            seconds = limite;
+            resetTimer();
         } else {
             count.textContent = "あと1回";
-            e.style.backgroundColor = "#fffeaa"
             pId = nId;
         }
     } else {
         e.textContent = "x";
         if (markCount%2 === 0) {
-            if (document.getElementById(String(pId)).style.backgroundColor === "rgb(255, 254, 170)") document.getElementById(String(pId)).style.backgroundColor = 'White';
-            document.getElementById('alert').style.display = 'none';
-            document.getElementById('blank').style.display = 'block';
             turn.textContent = "○のターン";
             count.textContent = "あと2回";
             pId = 100;
+            seconds = limite;
+            resetTimer();
         } else {
             count.textContent = "あと1回";
-            e.style.backgroundColor = "#fffeaa"
             pId = nId;
         }
     }
     evaluate();
-    if (!flag) winner();
+    if (!flag) winner("");
     markCount++;
     hist.push(nId);
 }
@@ -54,8 +84,6 @@ function judgeAround(pn, nn) {
         for (let i=-1; i<2; i++) {
             for (let j=-1; j<2; j++) {
                 if(nn === pn+i*8+j) {
-                    document.getElementById('alert').style.display = 'block';
-                    document.getElementById('blank').style.display = 'none';
                     return true;
                 }
             }
@@ -64,8 +92,6 @@ function judgeAround(pn, nn) {
         for (let i=-1; i<2; i++) {
             for (let j=0; j<2; j++) {
                 if(nn === pn+i*8+j) {
-                    document.getElementById('alert').style.display = 'block';
-                    document.getElementById('blank').style.display = 'none';
                     return true;
                 }
             }
@@ -74,8 +100,6 @@ function judgeAround(pn, nn) {
         for (let i=-1; i<2; i++) {
             for (let j=-1; j<1; j++) {
                 if(nn === pn+i*8+j) {
-                    document.getElementById('alert').style.display = 'block';
-                    document.getElementById('blank').style.display = 'none';
                     return true;
                 }
             }
@@ -335,78 +359,30 @@ function evaluate() {
     if (markCount === 63) flag = false;
 }
 
-function winner() {
+function winner(str) {
     const modalDialog = document.getElementById("dialog");
     let result = document.getElementById("message");
     console.log(result);
+    let factor = document.getElementById("cause");
     if (markCount === 63) {
         result.textContent = "引き分け";
         modalDialog.showModal();
-    } else if (markCount === 0 || Math.floor((markCount-1)/2)%2 === 1) {
+    } else if ((markCount === 0 || Math.floor((markCount-1)/2)%2 === 1) && str === "") {
         result.textContent = "○の勝ち";
         modalDialog.showModal();
-    } else {
+    } else if (Math.floor((markCount-1)/2)%2 === 0 && str === ""){
         result.textContent = "xの勝ち";
+        modalDialog.showModal();
+    } else if (markCount === 0 || Math.floor((markCount-1)/2)%2 === 1) {
+        factor.textContent = str;
+        result.textContent = "xの勝ち";
+        modalDialog.showModal();
+    } else {
+        factor.textContent = str;
+        result.textContent = "○の勝ち";
         modalDialog.showModal();
     }
 }
-
-const ruleBtn = document.getElementById('rule');
-const popupWrapper = document.getElementById('popup-wrapper');
-const close = document.getElementById('close');
-
-ruleBtn.addEventListener('click', () => {
-    popupWrapper.style.display = "block";
-});
-
-popupWrapper.addEventListener('click', e => {
-    if (e.target.id === popupWrapper.id || e.target.id === close.id) {
-        popupWrapper.style.display = 'none';
-    }
-});
-
-let redo = document.getElementById("redo");
-redo.addEventListener('click', function(){
-    if (markCount === 0) return;
-    let target = hist.pop();
-    if (mReach.includes(target)) {
-        document.getElementById(mReach[0]).style.backgroundColor = "White";
-        document.getElementById(mReach[1]).style.backgroundColor = "White";
-        document.getElementById(mReach[2]).style.backgroundColor = "White";
-        document.getElementById(mReach[3]).style.backgroundColor = "White";
-        mReach = [];
-    }
-    if (bReach.includes(target)) {
-        document.getElementById(bReach[0]).style.backgroundColor = "White";
-        document.getElementById(bReach[1]).style.backgroundColor = "White";
-        document.getElementById(bReach[2]).style.backgroundColor = "White";
-        document.getElementById(bReach[3]).style.backgroundColor = "White";
-        bReach = [];
-    }
-    document.getElementById(String(target)).textContent = "";
-    document.getElementById(String(target)).style.backgroundColor = "White";
-    pId = hist[hist.length-1];
-    markCount--;
-    document.getElementById('alert').style.display = 'none';
-    document.getElementById('blank').style.display = 'block';
-    if (markCount === 0 || Math.floor((markCount-1)/2)%2 === 1) {
-        if (markCount%2 === 0) {
-            if (markCount !== 0) document.getElementById(String(pId)).style.backgroundColor = '#fffeaa';
-            turn.textContent = "○のターン";
-            count.textContent = "あと1回";
-        } else {
-            count.textContent = "あと2回";
-        }
-    } else {
-        if (markCount%2 === 0) {
-            document.getElementById(String(pId)).style.backgroundColor = '#fffeaa';
-            turn.textContent = "×のターン";
-            count.textContent = "あと1回";
-        } else {
-            count.textContent = "あと2回";
-        }
-    }
-});
 
 let reload = document.getElementById("again");
 reload.addEventListener('click', function(){
@@ -417,3 +393,13 @@ let back = document.getElementById("back");
 back.addEventListener('click', function(){
     location.href = "ultimate.html";
 });
+
+const popupWrapper = document.getElementById('popup-wrapper');
+function start(time) {
+    limite = time;
+    seconds = time;
+    running = true;
+    displayTime();
+    popupWrapper.style.display = 'none';
+    countDown();
+}

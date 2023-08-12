@@ -1,5 +1,6 @@
 a {
     text-decoration: none;
+    color: black;
 }
 
 .title {
@@ -15,21 +16,28 @@ a {
 }
 
 .choice {
+    text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 60vh;
+    height: 30vh;
     font-size: xx-large;
     font-weight: bold;
 }
 
-.item {
+.item, .item:visited{
     padding: 0.5em 1em;
     margin: 2em 0;
     color: #000000;
     background: #bcbcbc;
     border-bottom: solid 6px #5a5a5a;
     border-radius: 9px;
+}
+
+.item:hover {
+    color: #000000;
+    background: #bcbcbc;
+    border-bottom: 2px solid #5a5a5a;
 }
 
 .dialog {
@@ -80,7 +88,61 @@ table td {
     width: 33.333% ;
 }
 
-.board > .back-btn {
+.board > .btn {
     width: calc(100% / 3);
     width: 33.333% ;
+}
+
+.board > #display {
+    width: calc(100% / 3);
+    width: 33.333% ;
+}
+  
+#popup-wrapper {
+    background-color: rgba(0, 0, 0, .5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+  
+#popup-inside {
+    text-align: center;
+    width: 100%;
+    max-width: 1000px;
+    background: white;
+    margin: 10% auto;
+    padding: 40px;
+    position: relative;
+}
+  
+#close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+}
+
+.redo, .rule {
+    color: #000000;
+    background-color: #bcbcbc;
+    border-radius: 100vh;
+    border-bottom: solid 6px #5a5a5a;
+    width: 140px;
+    height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.redo:hover, .rule:hover {
+    color: #000000;
+    background: #bcbcbc;
+    margin-top: 3px;
+    border-bottom: 2px solid #5a5a5a;
+}
+
+#display {
+    font-size: 40px;
 }

@@ -8,15 +8,38 @@
 <body>
     <header>
         <h1 class="title">
-            <ruby>
-                <rb>究極</rb>
-                <rp>（</rp>
-                <rt>アルティメット</rt>
-                <rp>）</rp>
-            </ruby>
-            ○× ゲーム
+            <a href="ultimate.html">
+                <ruby>
+                    <rb>究極</rb>
+                    <rp>（</rp>
+                    <rt>アルティメット</rt>
+                    <rp>）</rp>
+                </ruby>
+                ○× ゲーム
+            </a>
         </h1>
     </header>
+
+    <div id="popup-wrapper">
+        <div id="popup-inside">
+            <div id="close">x</div>
+            <div>
+                <h2>
+                    <ruby>
+                        <rb>究極</rb>
+                        <rp>（</rp>
+                        <rt>アルティメット</rt>
+                        <rp>）</rp>
+                    </ruby>
+                    ○× ゲーム　ルール説明
+                </h2>
+                <p>・1ターンに2つ自分のマークを置くことができる。<br>（※ただし先行1ターン目は1つまで）</p>
+                <p>・1ターン中、隣り合うマスにマークを置くことはできない。</p>
+                <p>・自分のマークを縦、横、斜めに4つ並べたものを2セット作ることで勝利となる。<br>（※ただし、2セットのうち2つ以上マークを重複してはならない）</p>
+                <p>・マスが埋まっても決着がつかない場合引き分けとなる。</p>
+            </div>
+        </div>
+    </div>
 
     <div class="choice">
         <div class="item">
@@ -24,10 +47,29 @@
                 一人で遊ぶ
             </a>
         </div>
-        <div>　　　　　　　　</div>
+        　　
+        <div>
+            <button id="rule" class="rule">ルール確認</button>
+        </div>
+        　　
         <div class="item">
             <a href="ultimate-duo.html">
                 二人で遊ぶ
+            </a>
+        </div>
+    </div>
+    <div class="choice">
+        <div class="item">
+            <a href="ultimate-solo-sennin.html">
+                一人で遊ぶ<br>
+                ～仙人モード～
+            </a>
+        </div>
+        　　　　　　　
+        <div class="item">
+            <a href="ultimate-duo-sennin.html">
+                二人で遊ぶ<br>
+                ～仙人モード～
             </a>
         </div>
     </div>
