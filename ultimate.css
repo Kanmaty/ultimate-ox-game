@@ -1,0 +1,86 @@
+a {
+    text-decoration: none;
+}
+
+.title {
+    text-align: center;
+    font-family: '游明朝 Medium', 'Noto Serif JP';
+    font-size: xxx-large;
+}
+
+.sub-title {
+    text-align: center;
+    font-family: '游明朝 Medium', 'Noto Serif JP';
+    font-weight: bold;
+}
+
+.choice {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.item {
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    color: #000000;
+    background: #bcbcbc;
+    border-bottom: solid 6px #5a5a5a;
+    border-radius: 9px;
+}
+
+.dialog {
+    text-align: center;
+}
+
+.alert {
+    text-align: center;
+    color: Red;
+}
+
+table {
+    margin: 0% 10%;
+    text-align: center;
+}
+
+table,
+table td {
+    border-collapse: collapse;
+    width: 40px;
+    height: 40px;
+    table-layout: fixed;
+}
+
+.turn {
+    text-align: center;
+    font-size: 40px;
+}
+
+.count {
+    font-size: 40px;
+    text-align: center;
+}
+
+.board {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.board > table {
+    width: calc(100% / 3);
+    width: 33.333% ;
+}
+
+.board > .info {
+    width: calc(100% / 3);
+    width: 33.333% ;
+}
+
+.board > .back-btn {
+    width: calc(100% / 3);
+    width: 33.333% ;
+}
