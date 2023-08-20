@@ -12,7 +12,7 @@ body {
 .title {
     text-align: center;
     font-family: '游明朝 Medium', 'Noto Serif JP';
-    font-size: 120px;
+    font-size: 100px;
 }
 
 .sub-title {
@@ -26,7 +26,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 30vh;
+    height: 10vh;
     font-size: xx-large;
     font-weight: bold;
 }
@@ -63,45 +63,14 @@ table {
 table,
 table td {
     border-collapse: collapse;
-    width: 40px;
-    height: 40px;
+    width: 120px;
+    height: 120px;
     table-layout: fixed;
 }
 
-.turn {
+.info {
     text-align: center;
-    font-size: 40px;
-}
-
-.count {
-    font-size: 40px;
-    text-align: center;
-}
-
-.board {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.board > table {
-    width: calc(100% / 3);
-    width: 33.333% ;
-}
-
-.board > .info {
-    width: calc(100% / 3);
-    width: 33.333% ;
-}
-
-.board > .btn {
-    width: calc(100% / 3);
-    width: 33.333% ;
-}
-
-.board > #display {
-    width: calc(100% / 3);
-    width: 33.333% ;
+    font-size: 100px;
 }
   
 #popup-wrapper {
@@ -137,8 +106,8 @@ table td {
     border-radius: 100vh;
     border-bottom: solid 6px #5a5a5a;
     width: 140px;
-    height: 50px;
-    font-size: 20px;
+    height: 100px;
+    font-size: 40px;
     font-weight: bold;
 }
 
@@ -181,11 +150,16 @@ table td {
 }
 
 .btn-phone > .rule-phone {
-    width: calc(100% / 2);
-    width: 50% ;
+    width: calc(100% / 5);
+    width: 20% ;
+}
+
+.btn-phone > .no-space {
+    width: calc(100% / 5);
+    width: 20% ;
 }
 
 .btn-phone > .redo-phone {
-    width: calc(100% / 2);
-    width: 50% ;
+    width: calc(100% / 5);
+    width: 20% ;
 }
