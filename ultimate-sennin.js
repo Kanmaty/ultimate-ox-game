@@ -88,46 +88,49 @@ function PushSquare(e) {
         document.getElementById('mul').style.display = 'none';
         document.getElementById('blank').style.display = 'block';
         evaluate();
-        return;
-    }
-    if (e.textContent != "") return;
-    else if (judgeAround(pId, nId)) {
-        running = false;
-        winner("マス被り");
-        return;
-    }
-
-    var turn = document.getElementById("turn");
-    var count = document.getElementById("count");
-
-    if (markCount === 0 || Math.floor((markCount-1)/2)%2 === 1) {
-        e.textContent = "○";
-        if (markCount%2 === 0) {
-            turn.textContent = "x のターン";
-            count.textContent = "あと2回";
-            pId = 100;
-            seconds = limite;
-            resetTimer();
-        } else {
-            count.textContent = "あと1回";
-            pId = nId;
-        }
     } else {
-        e.textContent = "x";
-        if (markCount%2 === 0) {
-            turn.textContent = "○のターン";
-            count.textContent = "あと2回";
-            pId = 100;
-            seconds = limite;
-            resetTimer();
+        if (e.textContent != "") return;
+        else if (judgeAround(pId, nId)) {
+            running = false;
+            winner("マス被り");
+            return;
+        }
+
+        if (markCount === 0 || Math.floor((markCount-1)/2)%2 === 1) e.textContent = "○";
+        else e.textContent = "x";
+        if (markCount === 0 || Math.floor((markCount-1)/2)%2 === 1) {
+            if (markCount%2 === 0) pId = 100; 
+            else pId = nId;
         } else {
-            count.textContent = "あと1回";
-            pId = nId;
+            if (markCount%2 === 0) pId = 100;
+            else pId = nId;
+        }
+        evaluate();
+        markCount++;
+    }
+    if (!stop) {
+        var turn = document.getElementById("turn");
+        var count = document.getElementById("count");
+
+        if (Math.floor(markCount/2)%2 === 0) {
+            if (markCount%2 === 0) {
+                count.textContent = "あと1回";
+            } else {
+                turn.textContent = "x のターン";
+                count.textContent = "あと2回";
+                resetTimer();
+            }
+        } else {
+            if (markCount%2 === 0) {
+                count.textContent = "あと1回";
+            } else {
+                turn.textContent = "○のターン";
+                count.textContent = "あと2回";
+                resetTimer();
+            }
         }
     }
-    evaluate();
-    if (!flag) winner("");
-    markCount++;
+    if (!flag) winner();
 }
 
 function judgeAround(pn, nn) {

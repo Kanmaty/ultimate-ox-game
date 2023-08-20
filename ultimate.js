@@ -60,47 +60,58 @@ function PushSquare(e) {
         document.getElementById('mul').style.display = 'none';
         document.getElementById('blank').style.display = 'block';
         evaluate();
-        return;
-    }
-    if (e.textContent != "") return;
-    else if (judgeAround(pId, nId)) return;
-
-    var turn = document.getElementById("turn");
-    var count = document.getElementById("count");
-
-    if (markCount === 0 || Math.floor((markCount-1)/2)%2 === 1) {
-        e.textContent = "○";
-        if (markCount%2 === 0) {
-            if (markCount !== 0 && document.getElementById(String(pId)).style.backgroundColor === "rgb(255, 254, 170)") document.getElementById(String(pId)).style.backgroundColor = 'White';
-            document.getElementById('alert').style.display = 'none';
-            document.getElementById('blank').style.display = 'block';
-            turn.textContent = "x のターン";
-            count.textContent = "あと2回";
-            pId = 100;
-        } else {
-            count.textContent = "あと1回";
-            e.style.backgroundColor = "#fffeaa";
-            pId = nId;
-        }
     } else {
-        e.textContent = "x";
-        if (markCount%2 === 0) {
-            if (document.getElementById(String(pId)).style.backgroundColor === "rgb(255, 254, 170)") document.getElementById(String(pId)).style.backgroundColor = 'White';
-            document.getElementById('alert').style.display = 'none';
-            document.getElementById('blank').style.display = 'block';
-            turn.textContent = "○のターン";
-            count.textContent = "あと2回";
-            pId = 100;
+        if (e.textContent != "") return;
+        else if (judgeAround(pId, nId)) return;
+
+        if (markCount === 0 || Math.floor((markCount-1)/2)%2 === 1) e.textContent = "○";
+        else e.textContent = "x";
+        if (markCount === 0 || Math.floor((markCount-1)/2)%2 === 1) {
+            if (markCount%2 === 0) {
+                if (markCount !== 0 && document.getElementById(String(pId)).style.backgroundColor === "rgb(255, 254, 170)") document.getElementById(String(pId)).style.backgroundColor = 'White';
+                pId = 100;
+            } else {
+                e.style.backgroundColor = "#fffeaa";
+                pId = nId;
+            }
         } else {
-            count.textContent = "あと1回";
-            e.style.backgroundColor = "#fffeaa";
-            pId = nId;
+            if (markCount%2 === 0) {
+                if (document.getElementById(String(pId)).style.backgroundColor === "rgb(255, 254, 170)") document.getElementById(String(pId)).style.backgroundColor = 'White';
+                pId = 100;
+            } else {
+                e.style.backgroundColor = "#fffeaa";
+                pId = nId;
+            }
+        }
+        evaluate();
+        markCount++;
+        hist.push(nId);
+    }
+    if (!stop) {
+        var turn = document.getElementById("turn");
+        var count = document.getElementById("count");
+
+        if (Math.floor(markCount/2)%2 === 0) {
+            if (markCount%2 === 0) {
+                count.textContent = "あと1回";
+            } else {
+                document.getElementById('alert').style.display = 'none';
+                document.getElementById('blank').style.display = 'block';
+                turn.textContent = "x のターン";
+                count.textContent = "あと2回";
+            }
+        } else {
+            if (markCount%2 === 0) {
+                count.textContent = "あと1回";
+            } else {
+                document.getElementById('alert').style.display = 'none';
+                document.getElementById('blank').style.display = 'block';
+                turn.textContent = "○のターン";
+                count.textContent = "あと2回";
+            }
         }
     }
-    evaluate();
     if (!flag) winner();
-    markCount++;
-    hist.push(nId);
 }
 
 function judgeAround(pn, nn) {
@@ -811,7 +822,8 @@ redo.addEventListener('click', function(){
     }
     document.getElementById(String(target)).textContent = "";
     document.getElementById(String(target)).style.backgroundColor = "White";
-    pId = hist[hist.length-1];
+    if (markCount !== 1 && markCount%2 === 1) pId = hist[hist.length-1];
+    else pId = 100;
     markCount--;
     document.getElementById('alert').style.display = 'none';
     document.getElementById('mul').style.display = 'none';

@@ -1,0 +1,191 @@
+a {
+    text-decoration: none;
+    color: black;
+}
+
+body {
+    -webkit-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    text-size-adjust: none;
+}
+
+.title {
+    text-align: center;
+    font-family: '游明朝 Medium', 'Noto Serif JP';
+    font-size: xxx-large;
+}
+
+.sub-title {
+    text-align: center;
+    font-family: '游明朝 Medium', 'Noto Serif JP';
+    font-weight: bold;
+}
+
+.choice {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.item, .item:visited{
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    color: #000000;
+    background: #bcbcbc;
+    border-bottom: solid 6px #5a5a5a;
+    border-radius: 9px;
+}
+
+.item:hover {
+    color: #000000;
+    background: #bcbcbc;
+    border-bottom: 2px solid #5a5a5a;
+}
+
+.dialog {
+    text-align: center;
+}
+
+.alert {
+    text-align: center;
+    color: Red;
+}
+
+table {
+    margin: 0% 10%;
+    text-align: center;
+}
+
+table,
+table td {
+    border-collapse: collapse;
+    width: 40px;
+    height: 40px;
+    table-layout: fixed;
+}
+
+.turn {
+    text-align: center;
+    font-size: 40px;
+}
+
+.count {
+    font-size: 40px;
+    text-align: center;
+}
+
+.board {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.board > table {
+    width: calc(100% / 3);
+    width: 33.333% ;
+}
+
+.board > .info {
+    width: calc(100% / 3);
+    width: 33.333% ;
+}
+
+.board > .btn {
+    width: calc(100% / 3);
+    width: 33.333% ;
+}
+
+.board > #display {
+    width: calc(100% / 3);
+    width: 33.333% ;
+}
+  
+#popup-wrapper {
+    background-color: rgba(0, 0, 0, .5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+  
+#popup-inside {
+    text-align: center;
+    width: 100%;
+    max-width: 1000px;
+    background: white;
+    margin: 10% auto;
+    padding: 40px;
+    position: relative;
+}
+  
+#close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+}
+
+.redo, .rule, .redo-phone, .rule-phone{
+    color: #000000;
+    background-color: #bcbcbc;
+    border-radius: 100vh;
+    border-bottom: solid 6px #5a5a5a;
+    width: 140px;
+    height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.redo:hover, .rule:hover, .redo-phone:hover, .rule-phone:hover {
+    color: #000000;
+    background: #bcbcbc;
+    margin-top: 3px;
+    border-bottom: 2px solid #5a5a5a;
+}
+
+#display {
+    font-size: 40px;
+}
+
+.phone {
+    color: Blue;
+}
+
+.last-home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.last-home > .phone {
+    width: calc(100% / 2);
+    width: 50% ;
+    text-align: right;
+}
+
+.last-home > .copy {
+    width: calc(100% / 2);
+    width: 50% ;
+}
+
+.btn-phone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-phone > .rule-phone {
+    width: calc(100% / 2);
+    width: 50% ;
+}
+
+.btn-phone > .redo-phone {
+    width: calc(100% / 2);
+    width: 50% ;
+}
