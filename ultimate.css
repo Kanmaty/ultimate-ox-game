@@ -125,7 +125,7 @@ table td {
     cursor: pointer;
 }
 
-.redo, .rule {
+.redo, .rule, .redo-phone, .rule-phone{
     color: #000000;
     background-color: #bcbcbc;
     border-radius: 100vh;
@@ -136,7 +136,7 @@ table td {
     font-weight: bold;
 }
 
-.redo:hover, .rule:hover {
+.redo:hover, .rule:hover, .redo-phone:hover, .rule-phone:hover {
     color: #000000;
     background: #bcbcbc;
     margin-top: 3px;
@@ -145,4 +145,41 @@ table td {
 
 #display {
     font-size: 40px;
+}
+
+.phone {
+    color: Blue;
+}
+
+.last-home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.last-home > .phone {
+    width: calc(100% / 2);
+    width: 50% ;
+    text-align: right;
+}
+
+.last-home > .copy {
+    width: calc(100% / 2);
+    width: 50% ;
+}
+
+.btn-phone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-phone > .rule-phone {
+    width: calc(100% / 2);
+    width: 50% ;
+}
+
+.btn-phone > .redo-phone {
+    width: calc(100% / 2);
+    width: 50% ;
 }
