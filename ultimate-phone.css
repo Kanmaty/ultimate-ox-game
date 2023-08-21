@@ -13,6 +13,7 @@ body {
     text-align: center;
     font-family: '游明朝 Medium', 'Noto Serif JP';
     font-size: 100px;
+    line-height: 1;
 }
 
 .sub-title {
@@ -66,13 +67,15 @@ table td {
     width: 120px;
     height: 120px;
     table-layout: fixed;
+    font-size: 80px;
 }
 
 .info {
     text-align: center;
     font-size: 100px;
+    line-height: 0.7;
 }
-  
+
 #popup-wrapper {
     background-color: rgba(0, 0, 0, .5);
     position: fixed;
@@ -150,16 +153,16 @@ table td {
 }
 
 .btn-phone > .rule-phone {
-    width: calc(100% / 5);
-    width: 20% ;
+    width: calc(100% / 2.86);
+    width: 35% ;
 }
 
 .btn-phone > .no-space {
-    width: calc(100% / 5);
-    width: 20% ;
+    width: calc(100% / 10);
+    width: 10% ;
 }
 
 .btn-phone > .redo-phone {
-    width: calc(100% / 5);
-    width: 20% ;
+    width: calc(100% / 2.86);
+    width: 35% ;
 }
