@@ -78,7 +78,7 @@ table td {
 }
 
 .turn {
-    margin: 25px;
+    padding: 30px;
 }
 
 #popup-wrapper {
@@ -89,7 +89,7 @@ table td {
     width: 100%;
     height: 100%;
     display: none;
-    font-size: 40px;
+    font-size: 35px;
 }
   
 #popup-inside {
@@ -110,10 +110,17 @@ table td {
 }
 
 #again, #back {
-    width: 250px;
+    width: 500px;
     height: 100px;
     padding: 20px;
-    font-size: 35px;
+    font-size: 40px;
+}
+
+#start-elite, #start-super, #start-sennin {
+    width: 350px;
+    height: 100px;
+    padding: 20px;
+    font-size: 30px;
 }
 
 .redo, .rule, .redo-phone, .rule-phone{
@@ -121,7 +128,7 @@ table td {
     background-color: #bcbcbc;
     border-radius: 100vh;
     border-bottom: solid 6px #5a5a5a;
-    width: 250px;
+    width: 300px;
     height: 100px;
     font-size: 40px;
     font-weight: bold;
