@@ -61,7 +61,7 @@ function PushSquare(e) {
         document.getElementById('blank').style.display = 'block';
         evaluate();
     } else {
-        if (e.textContent != "") return;
+        if (e.textContent !== "") return;
         else if (judgeAround(pId, nId)) return;
 
         if (markCount === 0 || Math.floor((markCount-1)/2)%2 === 1) e.textContent = "○";
@@ -855,4 +855,10 @@ reload.addEventListener('click', function(){
 let back = document.getElementById("back");
 back.addEventListener('click', function(){
     location.href = "ultimate.html";
+});
+
+let closeDia = document.getElementById('close');
+let dia = document.getElementById('dialog');
+closeDia.addEventListener('click', function() {
+    dia.close();
 });

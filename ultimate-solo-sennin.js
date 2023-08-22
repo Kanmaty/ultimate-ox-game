@@ -15,6 +15,7 @@ var limite;
 let seconds;
 let running = false;
 let display = document.getElementById("display");
+var auto = false;
 
 function displayTime() {
     display.textContent = "残り " + seconds + " 秒";
@@ -91,9 +92,9 @@ function PushSquare(e) {
     } else {
         if (e.textContent !== "") return;
         else if (judgeAround(pId, nId)) {
-            running = false;
             if (markCount === 0 || Math.floor((markCount-1)/2)%2 === 1) e.textContent = "○";
             else e.textContent = "x";
+            running = false;
             winner("マス被り");
             return;
         }
@@ -121,6 +122,7 @@ function PushSquare(e) {
                 turn.textContent = "x のターン";
                 count.textContent = "あと2回";
                 resetTimer();
+                auto = true;
             }
         } else {
             if (markCount%2 === 0) {
@@ -129,10 +131,26 @@ function PushSquare(e) {
                 turn.textContent = "○のターン";
                 count.textContent = "あと2回";
                 resetTimer();
+                auto = false;
             }
         }
     }
-    if (!flag) winner();
+    if (!flag) {
+        winner();
+        return;
+    }
+    if (auto) {
+        let tem = true;
+        while (tem) {
+            var rand = Math.floor(Math.random() * 63 ) + 1;
+            if (stop) {
+                if (document.getElementById(String(rand)).style.backgroundColor === "rgb(255, 166, 40)") tem = false;
+            } else {
+                if (document.getElementById(String(rand)).textContent === "" && !judgeAround(pId, rand)) tem = false;
+            }
+        }
+        PushSquare(document.getElementById(String(rand)));
+    }
 }
 
 function judgeAround(pn, nn) {
@@ -755,18 +773,18 @@ function winner(str) {
         result.textContent = "引き分け";
         modalDialog.showModal();
     } else if ((markCount === 0 || Math.floor((markCount-1)/2)%2 === 1) && str === "") {
-        result.textContent = "○の勝ち";
+        result.textContent = "あなたの勝ち";
         modalDialog.showModal();
     } else if (Math.floor((markCount-1)/2)%2 === 0 && str === ""){
-        result.textContent = "xの勝ち";
+        result.textContent = "CPの勝ち";
         modalDialog.showModal();
     } else if (markCount === 0 || Math.floor((markCount-1)/2)%2 === 1) {
         factor.textContent = str;
-        result.textContent = "xの勝ち";
+        result.textContent = "CPの勝ち";
         modalDialog.showModal();
     } else {
         factor.textContent = str;
-        result.textContent = "○の勝ち";
+        result.textContent = "あなたの勝ち";
         modalDialog.showModal();
     }
 }
