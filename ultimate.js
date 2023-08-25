@@ -14,6 +14,7 @@ var bstack = [];
 var bflag = true;
 
 function PushSquare(e) {
+    if (!flag) return;
     nId = Number(e.id);
     if (stop) {
         if (document.getElementById(String(nId)).style.backgroundColor !== "rgb(255, 166, 40)") return;
@@ -738,11 +739,11 @@ function winner() {
     if (markCount === 63) {
         result.textContent = "引き分け";
         modalDialog.showModal();
-    } else if (markCount === 0 || Math.floor((markCount-1)/2)%2 === 1) {
-        result.textContent = "○の勝ち";
+    } else if (Math.floor(markCount/2)%2 === 1) {
+        result.textContent = "xの勝ち";
         modalDialog.showModal();
     } else {
-        result.textContent = "xの勝ち";
+        result.textContent = "○の勝ち";
         modalDialog.showModal();
     }
 }
@@ -763,6 +764,7 @@ popupWrapper.addEventListener('click', e => {
 
 let redo = document.getElementById("redo");
 redo.addEventListener('click', function(){
+    if (!flag) return;
     if (markCount === 0) return;
     let target = hist.pop();
     if (mReach1.includes(target)) {
@@ -857,7 +859,7 @@ back.addEventListener('click', function(){
     location.href = "ultimate.html";
 });
 
-let closeDia = document.getElementById('close');
+let closeDia = document.getElementById('close-last');
 let dia = document.getElementById('dialog');
 closeDia.addEventListener('click', function() {
     dia.close();

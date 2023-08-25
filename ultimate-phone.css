@@ -105,6 +105,13 @@ table td {
     cursor: pointer;
 }
 
+#close-last {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+}
+
 #again, #back {
     width: 500px;
     height: 100px;

@@ -125,6 +125,13 @@ table td {
     cursor: pointer;
 }
 
+#close-last {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+}
+
 .redo, .rule, .redo-phone, .rule-phone{
     color: #000000;
     background-color: #bcbcbc;

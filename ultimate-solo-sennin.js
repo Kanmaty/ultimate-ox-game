@@ -31,6 +31,7 @@ function countDown() {
         } else if (seconds === 0) {
             running = false;
             display.textContent = "タイムアップです。";
+            flag = false;
             winner("タイムアップ");
         }
         countDown();
@@ -45,6 +46,7 @@ function resetTimer() {
 }
 
 function PushSquare(e) {
+    if (!flag) return;
     nId = Number(e.id);
     if (stop) {
         if (document.getElementById(String(nId)).style.backgroundColor !== "rgb(255, 166, 40)") return;
@@ -95,6 +97,7 @@ function PushSquare(e) {
             if (markCount === 0 || Math.floor((markCount-1)/2)%2 === 1) e.textContent = "○";
             else e.textContent = "x";
             running = false;
+            flag = false;
             winner("マス被り");
             return;
         }
@@ -136,7 +139,7 @@ function PushSquare(e) {
         }
     }
     if (!flag) {
-        winner();
+        winner("");
         return;
     }
     if (auto) {
@@ -772,13 +775,13 @@ function winner(str) {
     if (markCount === 63) {
         result.textContent = "引き分け";
         modalDialog.showModal();
-    } else if ((markCount === 0 || Math.floor((markCount-1)/2)%2 === 1) && str === "") {
+    } else if ((Math.floor(markCount/2)%2 === 1) && str === "") {
         result.textContent = "あなたの勝ち";
         modalDialog.showModal();
-    } else if (Math.floor((markCount-1)/2)%2 === 0 && str === ""){
+    } else if ((Math.floor(markCount/2)%2 === 0) && str === "") {
         result.textContent = "CPの勝ち";
         modalDialog.showModal();
-    } else if (markCount === 0 || Math.floor((markCount-1)/2)%2 === 1) {
+    } else if (Math.floor((markCount+1)/2)%2 === 0) {
         factor.textContent = str;
         result.textContent = "CPの勝ち";
         modalDialog.showModal();
@@ -799,7 +802,7 @@ back.addEventListener('click', function(){
     location.href = "ultimate.html";
 });
 
-let closeDia = document.getElementById('close');
+let closeDia = document.getElementById('close-last');
 let dia = document.getElementById('dialog');
 closeDia.addEventListener('click', function() {
     dia.close();
